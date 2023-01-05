@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState,useEffect} from "react"
+import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./components/Home"
+import { PlayList } from './components/PlayList';
+import { Search } from "./components/Search"
+import {AddPlaylist} from "./components/AddPlaylist"
+import { Signup } from './components/Signup';
+import {Login} from "./components/Login"
+import { Song } from './components/Song';
+import { LikedSongs } from './components/LikedSongs';
+import React from 'react';
+
+export const ThemeContext=React.createContext();
 
 function App() {
+  let [userData,setUserData]=useState("user");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={userData}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Signup/>}/>
+          <Route path='/Login' element={<Login/>}/>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/playlists' element={<PlayList/>}/>
+          <Route path='/songs' element={<Song/>}/>
+          <Route path='/LikedSongs' element={<LikedSongs/>}/>
+          <Route path='/search' element={<Search/>}/>
+          <Route path='/AddPlaylist' element={<AddPlaylist/>}/>
+        </Routes>
+      </BrowserRouter>
+    </ThemeContext.Provider>
   );
 }
 
