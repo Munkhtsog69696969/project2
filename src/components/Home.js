@@ -7,6 +7,8 @@ import axios from "axios"
 import React from "react";
 import { useState, useEffect,useRef } from "react"
 
+import { useNavigate } from "react-router-dom"
+
 import { Outlet, Link } from "react-router-dom";
 import "./css/Home.css"
 
@@ -15,6 +17,8 @@ const baseURL = "http://localhost:7000";
 
 
 export const Home = () => {
+
+    const navigate=useNavigate();
     
     const nameInput=useRef(null);
     
@@ -69,6 +73,11 @@ export const Home = () => {
 
     console.log(playlists)
 
+    async function Logout(){
+        localStorage.setItem("user","");
+        navigate("/login");
+    }
+
     return (
         <>
             <div className='container'>
@@ -112,6 +121,8 @@ export const Home = () => {
                         </Link>
                     </div>
 
+                    <p className="texts" onClick={Logout}>Log out</p>
+
                     <p style={{color:"white",marginLeft:"20px",fontSize:"20px"}}>Your Playlists:</p>
 
                     {
@@ -137,6 +148,7 @@ export const Home = () => {
                     <div className="section2-2">
                         <div className="image-container">
                             <img className="image" src="https://i.seadn.io/gae/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc?auto=format&w=1000"/>
+                            
                         </div>
                     </div>
                 </div>

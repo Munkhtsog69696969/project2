@@ -10,6 +10,7 @@ import { Signup } from './components/Signup';
 import {Login} from "./components/Login"
 import { Song } from './components/Song';
 import { LikedSongs } from './components/LikedSongs';
+import { SongPlayer } from './components/SongPlayer';
 import React from 'react';
 
 export const ThemeContext=React.createContext();
@@ -26,6 +27,7 @@ function App() {
           <Route path='/playlists' element={<PlayList/>}/>
           <Route path='/songs' element={<Song/>}/>
           <Route path='/LikedSongs' element={<LikedSongs/>}/>
+          <Route path='/player' element={<SongPlayer/>}/>
           <Route path='/search' element={<Search/>}/>
           <Route path='/AddPlaylist' element={<AddPlaylist/>}/>
         </Routes>

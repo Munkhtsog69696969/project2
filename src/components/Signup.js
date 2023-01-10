@@ -3,6 +3,8 @@ import { useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../components/config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const baseURL="http://localhost:7000";
 
@@ -21,6 +23,18 @@ export const Signup=()=>{
             }).catch((err)=>{
                 console.log(err)
             })
+
+        await createUserWithEmailAndPassword(auth , emailInput.current.value , userPasswordInput.current.value)
+        .then((userCredential)=>{
+            const user=userCredential.user;
+            console.log(user);
+            navigate("/login");
+        })
+        .catch((error)=>{
+            const errorCode=error.code;
+            const errorMessage=error.Message;
+            console.log(errorCode,errorMessage);
+        })
             
         userNameInput.current.value="";
         userPasswordInput.current.value="";
