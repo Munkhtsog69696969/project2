@@ -6,10 +6,9 @@ import { ThemeContext } from "../App";
 import React from "react";
 import { PlayList } from "./PlayList";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { client } from "../client";
 
 export const Login=()=>{
-    const baseURL="http://localhost:7000";
-
     const navigate=useNavigate();
 
     const userNameInput=useRef("");
@@ -22,7 +21,7 @@ export const Login=()=>{
         const userPassword=userPasswordInput.current.value;
         const email=emailInput.current.value;
 
-        await axios.post(baseURL+"/login" , {username:userName , password:userPassword})
+        await client.post("/login" , {username:userName , password:userPassword})
             .then((response)=>{
                 console.log(response.data);
                 setUserData(response.data._id)

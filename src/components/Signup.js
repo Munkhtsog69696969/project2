@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../components/config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
-const baseURL="http://localhost:7000";
+import { client } from "../client";
+// const baseURL="http://localhost:7000";
 
 export const Signup=()=>{
     const userNameInput=useRef("");
@@ -17,7 +17,7 @@ export const Signup=()=>{
     async function createUser(){
         const userName=userNameInput.current.value;
         const userPassword=userPasswordInput.current.value;
-        await axios.post(baseURL+"/users",{username:userName , password:userPassword})
+        await client.post("/users",{username:userName , password:userPassword})
             .then((res)=>{
                 console.log(res)
             }).catch((err)=>{

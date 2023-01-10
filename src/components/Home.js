@@ -11,9 +11,7 @@ import { useNavigate } from "react-router-dom"
 
 import { Outlet, Link } from "react-router-dom";
 import "./css/Home.css"
-
-
-const baseURL = "http://localhost:7000";
+import { client } from "../client"
 
 
 export const Home = () => {
@@ -25,7 +23,7 @@ export const Home = () => {
     const emailInput=useRef(null);
 
     function Enter (Name,Email){
-        axios.post(baseURL,{name:Name , email:Email})
+        client.post("/",{name:Name , email:Email})
         .then((response) => {
             console.log(response.data)
         })

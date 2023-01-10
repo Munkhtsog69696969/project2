@@ -3,8 +3,7 @@ import { useRef, useState, useEffect } from "react"
 import axios from "axios";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router";
-
-const baseURL = "http://localhost:7000";
+import { client } from "../client";
 
 export const Song = () => {
     const navigate = useNavigate();
@@ -24,7 +23,7 @@ export const Song = () => {
     //console.log(playlistId);
 
     useEffect(() => {
-        axios.get(baseURL + "/songs")
+        client.get("/songs")
             .then(async (res) => {
                 setSongs(res.data);
             }).catch((err) => {

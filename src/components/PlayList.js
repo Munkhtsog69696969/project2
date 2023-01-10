@@ -6,9 +6,9 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { client } from "../client";
 
-
-const baseURL = "http://localhost:7000";
+// const baseURL = "http://localhost:7000";
 
 
 export const PlayList = () => {
@@ -21,7 +21,7 @@ export const PlayList = () => {
     // console.log((userId))
 
     useEffect(()=>{
-        axios.get(baseURL+"/playlists")
+        client.get("/playlists")
             .then(async(res)=>{
                 setDatas(res.data);
             }).catch((err)=>{
